@@ -144,7 +144,7 @@ if(COMPILER_SUPPORTS_CXX14)
 elseif(COMPILER_SUPPORTS_CXX0X)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 else()
-	message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} does not have C++14 support. Please use a different C++ compiler.")
+  message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} does not have C++14 support. Please use a different C++ compiler.")
 endif()
 set(HBASE_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/hbase")
 set(HBASE_PROTO_GEN_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/hbase/if")
@@ -162,9 +162,7 @@ if (OPENSSL_FOUND)
 else ()
   message( FATAL_ERROR "OpenSSL was not found. Please install OpenSSL" )
 endif (OPENSSL_FOUND)
-## Download Facebook 1 and build locally
-
-
+## Download dependencies and build locally
 if (DOWNLOAD_DEPENDENCIES)
   download_boost(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} "${BOOST_LIBS}")
   download_doubleconversion(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
@@ -257,8 +255,6 @@ set_target_properties(hbaseclient-static PROPERTIES LINKER_LANGUAGE CXX)
 SET_TARGET_PROPERTIES(hbaseclient-static PROPERTIES OUTPUT_NAME hbaseclient CLEAN_DIRECT_OUTPUT 1)
 set_target_properties(hbaseclient-static PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/libs")
 target_link_libraries(hbaseclient-static ${Boost_LIBRARIES})
-
-
 target_link_libraries(hbaseclient-static ${SASL_LIBS})
 target_link_libraries(hbaseclient-static ${GFLAGS_SHARED_LIB})
 target_link_libraries(hbaseclient-static ${KRB5_LIBRARIES})
